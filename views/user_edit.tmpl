@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block jumbotron %}
+  
+     <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>MAVS Admin!</h2>
+        <p>
+          User Management: {{user["login"]}}
+        </p>
+      </div>
+    </div>
+
+  </div> <!-- /container -->
+{% end %}
+
+
+{% block content %}
+    <form class="form-signin" action="/user/" method="post">
+        <h3 class="form-signin-heading">User Daten:</h3>
+        
+        <label for="swbkuerzel" class="sr-only">swbkuerzel</label>
+        <input type="text" id="swbkuerzel" name="swbkuerzel" class="form-control" value="{{user["login"]}}" required autofocus>
+        
+        <label for="role" class="sr-only">role</label>
+        <input type="text" id="role" name="role" class="form-control" value="{{user["role"]}}" required autofocus>
+        
+        <label for="pwd-hash" class="sr-only">passwort</label>
+        <label class="sr-only">{{user["password"]}}</label>
+        
+        <label for="id" class="sr-only">id</label>
+        <input type="text" id="id" name="id" class="form-control" value="{{user["id"]}}" required autofocus>
+        
+        <hr>
+        <button class="btn  btn-success btn-block" type="submit">Update</button>
+      </form>
+      
+      <a href="/user/delete/{{user["id"]}}">delete user</a>
+{% end %}
+    
+
+
+
+
+

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block jumbotron %}
+  
+     <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Wilkommen bei diary</h2>
+        <p>Bitte melden sie sich mit ihrer email Adresse und ihrem Passwort an.
+       </p>
+      </div>
+    </div>
+
+  </div> <!-- /container -->
+{% end %}
+
+
+{% block content %}
+
+
+      <form class="form-signin" action="login/" method="post">
+        <h3 class="form-signin-heading">Anmelden:</h3>
+        <label for="login" class="sr-only">username</label>
+        <input type="text" id="login" name="login" class="form-control" placeholder="email@adress.here" required autofocus>
+        <label for="passwort" class="sr-only">passwort</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="password" required>
+        <hr>
+        <button class="btn  btn-success btn-block" type="submit">Anmelden</button>
+      </form>
+
+
+{% end %}
+    
+
+
+
+
+

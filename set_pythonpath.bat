@@ -1,0 +1,1 @@
+set PYTHONPATH=c:\khz\devel\diary;%PYTHONPATH%
