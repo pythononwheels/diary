@@ -12,8 +12,8 @@ import os
 import os.path
 import sys
 
-from controllers import LoginHandler, UserHandler, DiaryHandler, LogoutHandler, GoodByeHandler
-from lib import mavs_id
+from controllers import *
+from library.pow3_lib import APP_ID
 
 
 app_settings = {
@@ -22,7 +22,7 @@ app_settings = {
     "template_path"     :   "./views",
     "static_path"       :   "./static",
     "static_url_prefix" :   "/static/",
-    "cookie_secret"     :   mavs_id,
+    "cookie_secret"     :   APP_ID,
     "login_url"         :   "/login",
     "cookie_secret"     :   "254f2254-6bb0-1312-1104-3a0786ce285e"
     

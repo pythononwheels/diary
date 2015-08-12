@@ -16,16 +16,18 @@ class LoginHandler(BaseHandler):
         #self.database = database
 
     def get(self):
-        self.render("login.html")
+        self.render("login.tmpl")
 
     def post(self):
         passwort = self.get_argument('passwort', '')
-        swbkuerzel = self.get_argument('login', '')
+        login = self.get_argument('login', '')
         
         u = User(login)
         if u.exists_in_db():
             # user exists
             u.create_from_db()
+            self.set_secure_cookie("login", login)
+            self.redirect("diary/cards")
             if u.check_password(passwort):
                 # login ok
                 self.set_secure_cookie("login", login)

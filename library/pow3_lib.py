@@ -1,6 +1,8 @@
 import re
 import time
 
+APP_ID = '4b0dc9e7-937f-43a3-b1ba-d5185d79ce1f'
+
 #
 # (pattern, search, replace) regex english plural rules tuple
 # taken from : http://www.daniweb.com/software-development/python/threads/70647
