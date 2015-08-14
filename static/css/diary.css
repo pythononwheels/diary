@@ -1,0 +1,18 @@
+html{
+	/* This image will be displayed fullscreen */
+	background:url('../images/The-Austerity-Diaries.jpg') no-repeat center center;
+
+	/* Ensure the html element always takes up the full height of the browser window */
+	min-height:100%;
+
+	/* The Magic */
+	background-size:cover;
+}
+
+.jumbotron {
+  padding: 30px 15px;
+  margin-bottom: 30px;
+  color: inherit;
+  border: 1px;
+  background-color: #fff;
+}
