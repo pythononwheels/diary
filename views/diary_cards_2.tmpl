@@ -1,0 +1,30 @@
+{% extends "base_logged_in.tmpl" %}
+
+{% block content %}
+
+<link href="{{ static_url("css/diary_logged_in.css") }}" rel="stylesheet">
+
+<hr>
+  {% for post in posts %}
+
+	<div class="row">
+	   <div class="col-sm-4 col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-thumbnail"><img src="{{post["title_photo"]}}" class="img-responsive"></div>
+          <div class="panel-body">
+            <p class="lead">{{post["title"]}}</p>
+            <p>{{post["text"]}}</p>
+            
+          </div>
+        </div>
+      </div><!--/col-->
+      
+  {% end %}
+  
+  	<hr>
+  
+  	
+    
+    <br>
+    
+{% end %}

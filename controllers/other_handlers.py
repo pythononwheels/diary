@@ -7,4 +7,4 @@ class LogoutHandler(BaseHandler):
 
 class GoodByeHandler(BaseHandler):
     def get(self):
-        self.render("goodbye.html")
+        self.render("goodbye.tmpl")

@@ -1,5 +1,5 @@
 from db import db, users_table
-#from passlib.hash import sha256_crypt
+from passlib.hash import sha256_crypt
 import uuid
 from tinydb import TinyDB, where
 import json
@@ -12,7 +12,7 @@ class User(object):
 
     """
     
-
+    table = users_table
     def __init__(self, login):
         self.table = users_table
         self.login = login
@@ -34,15 +34,23 @@ class User(object):
         if self.exists_in_db():
             res = self.table.search(where("login") == self.login)
             res = res[0]
-            print(res)
+            #print(res)
             for key,value in res.items():
                 setattr(self, key, value)
-            print(self.to_dict())
+            #print(self.to_dict())
+            return self
+        else:
+            return None
 
     def exists_in_db(self):
         """ check if user is in db """
         return self.table.contains(where("login") == self.login)
-    
+
+    @classmethod
+    def find(self, login):
+        u = User(login)
+        return u
+        
     def find_all(self):
         return self.table.all()
     
@@ -67,14 +75,12 @@ class User(object):
         return
 
     def set_password(self, raw_pwd):
-        #self.hash = sha256_crypt.encrypt(raw_pwd)
+        self.hash = sha256_crypt.encrypt(raw_pwd)
         #self.to_db()
-        pass
 
     def check_password(self, raw_pwd):
         """ pwd check """
-        #return sha256_crypt.verify(raw_pwd, self.hash)
-        return True
+        return sha256_crypt.verify(raw_pwd, self.hash)
 
     def __str__(self):
         return str(self.__dict__)

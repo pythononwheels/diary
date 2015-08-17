@@ -1,4 +1,5 @@
 from controllers.base_handler import BaseHandler
+from models.user import User
 
 class LoginHandler(BaseHandler):
     
@@ -14,11 +15,16 @@ class LoginHandler(BaseHandler):
             (r'/user/(.*)', ProfileHandler, dict(database=database)),
         """
         #self.database = database
+    def before_handler(self):
+        self.default_methods["get"] = "login"
+        self.default_methods["post"] = "login"
 
-    def get(self):
+
+    def login_get(self):
         self.render("login.tmpl")
 
-    def post(self):
+    def login_post(self):
+        print("in login_post")
         passwort = self.get_argument('passwort', '')
         login = self.get_argument('login', '')
         
@@ -27,7 +33,7 @@ class LoginHandler(BaseHandler):
             # user exists
             u.create_from_db()
             self.set_secure_cookie("login", login)
-            self.redirect("diary/cards")
+            self.redirect("/diary/cards")
             if u.check_password(passwort):
                 # login ok
                 self.set_secure_cookie("login", login)
@@ -39,17 +45,4 @@ class LoginHandler(BaseHandler):
         else:
             # user not in db
             self.render("error.html", msg="Der Benutzer " + login + " existiert nicht.")
-
-
-    def prepare(self):
-        """
-            Called at the beginning of a request before get/post/etc.
-        """
-        pass
-
-    def on_finish(self):
-        """
-            Called after the end of a request.
-        """
-        self.print_debug_info()
-        
+  

@@ -1,1 +1,1 @@
-{"story": {}, "access": {}, "users": {}, "_default": {}}
+{"users": {"1": {"firstname": "Stephanie", "gender": null, "motto": null, "email": null, "login": "meckzweck@gmx.de", "hash": "$5$rounds=535000$9MTbaLIbRN35HHtU$DoB48DM/x/CvFSPBiX1Yu8IjKV7j6KM/9AmId55loP0", "lastname": "Zweck", "_id": "519cf4d9-0226-40e6-9de8-6c90ad9b863e", "profile_photo": null}}, "access": {}, "_default": {}, "posts": {}}

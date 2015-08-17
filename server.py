@@ -38,7 +38,7 @@ routes = [
         (r'/login',                            LoginHandler),
         (r'/logout',                           LogoutHandler),
         (r'/goodbye',                          GoodByeHandler),
-        (r'/diary/cards',                      DiaryHandler),
+        (r'/diary',                            DiaryHandler),
         (r'/user/([^/]+)',                     UserHandler),
         (r'.*',                                LoginHandler)
         ]

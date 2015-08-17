@@ -18,31 +18,12 @@ class DiaryHandler(BaseHandler):
         self.method = ""
 
     def get(self):
-        self.write("get")
-        self.flush()
+        #self.print_debug_info()
+        self.render("diary_cards_2.tmpl")
 
     def post(self):
         """  for now return a list of user plots"""
-        swbkuerzel = self.get_argument("swbkuerzel", None)
-        plots=[]
-        
-        if swbkuerzel:
-            allowed_plot_names = access_table.search(where("swbkuerzel") == swbkuerzel)
-            for plot in allowed_plot_names:
-                res = plots_table.search(where("plot_name") == plot["plot_name"] )
-                if res:
-                    plots.append(res[0])
-
-        #self.write(",".join(plot_names))
-        self.write(str(plots))
-        self.flush()
-
-    def prepare(self):
-        """
-            Called at the beginning of a request before get/post/etc.
-        """
-        self.path = self.request.uri.split('?')[0]
-        self.method = self.path.split('/')[-1]
+        pass
         
 
     def on_finish(self):
