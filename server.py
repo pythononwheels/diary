@@ -1,7 +1,7 @@
 #
 #
-# windows 7 rollout server 
-#
+# diray server 
+# khz / 2015
 #
 
 import tornado.httpserver
@@ -13,13 +13,20 @@ import os.path
 import sys
 
 from controllers import *
-from library.pow3_lib import APP_ID
+from views.modules import *
 
+from library.pow3_lib import APP_ID
+from library.render_partial import RenderPatialModule
+
+ui_modules = {
+    'render_partial'     :   RenderPatialModule
+}
 
 app_settings = {
     "port"              :   443,
     "debug"             :   True,
     "template_path"     :   "./views",
+    "ui_modules"        :   ui_modules,
     "static_path"       :   "./static",
     "static_url_prefix" :   "/static/",
     "cookie_secret"     :   APP_ID,
@@ -38,7 +45,7 @@ routes = [
         (r'/login',                            LoginHandler),
         (r'/logout',                           LogoutHandler),
         (r'/goodbye',                          GoodByeHandler),
-        (r'/diary',                            DiaryHandler),
+        (r'/diary/[^/]+',                          DiaryHandler),
         (r'/user/([^/]+)',                     UserHandler),
         (r'.*',                                LoginHandler)
         ]

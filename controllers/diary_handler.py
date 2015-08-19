@@ -17,14 +17,15 @@ class DiaryHandler(BaseHandler):
         self.path = ""
         self.method = ""
 
-    def get(self):
+    def cards_get(self):
         #self.print_debug_info()
-        self.render("diary_cards_2.tmpl")
+        posts = [
+            { "title" : "ein erster Titel", "text" : "hier kommt jetzt der Text"},
+            { "title" : "ein zweiter Titel", "text" : "hier kommt jetzt der Text"},
+            { "title" : "ein dritter Titel", "text" : "hier kommt jetzt der Text"}
+        ]
+        self.render("diary_cards_2.tmpl", posts=posts)
 
-    def post(self):
-        """  for now return a list of user plots"""
-        pass
-        
 
     def on_finish(self):
         """

@@ -33,15 +33,8 @@ class LoginHandler(BaseHandler):
             # user exists
             u.create_from_db()
             self.set_secure_cookie("login", login)
+            print("set cookie: " + str(login))
             self.redirect("/diary/cards")
-            if u.check_password(passwort):
-                # login ok
-                self.set_secure_cookie("login", login)
-                #self.render("mavs_manager.html", users=users_table.all())
-                self.redirect("/diary/cards")
-            else:
-                # wrong passwort
-                self.render("error.html", msg="Falsches Passwort für Benutzer: " + login )
         else:
             # user not in db
             self.render("error.html", msg="Der Benutzer " + login + " existiert nicht.")

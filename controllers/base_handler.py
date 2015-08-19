@@ -75,23 +75,20 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
     def dispatch(self, path, method):
-        print("dispatch: " + self.request.method.lower())
+        print("dispatch: http request method" + self.request.method.lower())
         print("dispatch: uri: " +  self.uri)
         #print("dispatch: request dir: " +  str(dir(self.request)))
         print("dispatch: method: " +  self.method)
         print("dispatch: looking for action: " +  method + "_" + self.request.method.lower())
-        action = None
-        try:
-            action = getattr(self, method + "_" + self.request.method.lower())
-            print("dispatch: action is: " + str(action))
-        except:
-            pass
+        action = getattr(self, method + "_" + self.request.method.lower(), None)
         if action:
             if callable(action):
+                print("dispatch: action is: " + str(action))
                 return action()
             else:
                 raise tornado.web.HTTPError(404)
         elif self.request.method.lower() in self.default_methods:
+            # check if there is a default action for this http request type and call that
             # this gives: get_login() if self.default_methods["get"] = "login"
             action = getattr(self, self.default_methods[self.request.method.lower()] + "_" + self.request.method.lower())
             return action()

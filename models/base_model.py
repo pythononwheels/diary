@@ -1,39 +1,26 @@
-from db import db, posts_table
+from db import db, photos_table
 from passlib.hash import sha256_crypt
 import uuid
 from tinydb import TinyDB, where
 import json
 import time
 
-class Post(object):
+class BaseModel(object):
     """ a diary post    """
     
-    table = posts_table
-    def __init__(self, title=None):
-        self.table = posts_table
-        self.title = title
+    def __init__(self, path):
         self.time = time.time()
         self.time_str = self.get_time()
-        self.text = None
-        self.is_event = False
-        self.event_text = None
         self.tags = set()
         self.votings = [] #list of tuples [(vote, date), ...] anonymous on purpose
         self.shared = [] # list of tuples if shared [("destination", date), ..]
         self.is_favourite = None 
-        self.photos = [] # list of ids of photo models
-        self.title_photo = None
         self._id = str(uuid.uuid4())
         self.non_data = ["table"]
 
     def get_time(self):
         return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(self.time))
 
-    def add_photo(self, id):
-        if len(self.photos == 0):
-            self.title_photo = id
-        self.photos.append(id)
-    
     def exists_in_db(self):
         """ check if user is in db """
         return self.table.contains(where("_id") == self._id)
@@ -80,14 +67,6 @@ class Post(object):
             print("inserting")
             self.table.insert(d)
         return
-
-    def set_password(self, raw_pwd):
-        self.hash = sha256_crypt.encrypt(raw_pwd)
-        #self.to_db()
-
-    def check_password(self, raw_pwd):
-        """ pwd check """
-        return sha256_crypt.verify(raw_pwd, self.hash)
 
     def __str__(self):
         return str(self.__dict__)

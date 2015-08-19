@@ -13,4 +13,6 @@ users_table = db.table("users")
 
 posts_table = db.table('posts')
 
+photos_table = db.table('photos')
+
 access_table = db.table('access')
