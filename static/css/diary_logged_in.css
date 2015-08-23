@@ -25,3 +25,10 @@ body {
 /* for masonry.js */
 .grid-item { width: 200px; }
 .grid-item--width2 { width: 400px; }
+
+Holder.addTheme('gray', {
+  background: '#777',
+  foreground: 'rgba(255,255,255,.75)',
+  font: 'Helvetica',
+  fontweight: 'normal'
+})
