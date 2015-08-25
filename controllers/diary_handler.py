@@ -25,7 +25,8 @@ class DiaryHandler(BaseHandler):
             { "title" : "ein dritter Titel", "text" : "hier kommt jetzt der Text"}
         ]
         #self.render("diary_cards_2.tmpl", posts=posts)
-        self.render("diary_bs4_cardstest_2.tmpl", posts=posts)
+        #self.render("diary_bs4_cardstest_2.tmpl", posts=posts)
+        self.render("diary_bs4_cardstest.tmpl", posts=posts, login=self.get_secure_cookie("login"))
 
     def on_finish(self):
         """
