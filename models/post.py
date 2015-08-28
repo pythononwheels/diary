@@ -20,19 +20,16 @@ class Post(object):
         self.tags = set()
         self.votings = [] #list of tuples [(vote, date), ...] anonymous on purpose
         self.shared = [] # list of tuples if shared [("destination", date), ..]
-        self.is_favourite = None 
-        self.photos = [] # list of ids of photo models
+        self.love_it = False 
+        self.photo = None # list of ids of photo models
         self.title_photo = None
         self._id = str(uuid.uuid4())
+        # all non_data attributes of the class wont be stored in the DB.
         self.non_data = ["table"]
+        self.has_encoder = ["tags"]
 
     def get_time(self):
         return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(self.time))
-
-    def add_photo(self, id):
-        if len(self.photos == 0):
-            self.title_photo = id
-        self.photos.append(id)
     
     def exists_in_db(self):
         """ check if user is in db """
@@ -49,6 +46,9 @@ class Post(object):
             return self
         else:
             return None
+
+    def tags_encoder(self):
+        return(list(self.tags))
 
     @classmethod
     def find_by_id(self, id):
@@ -68,11 +68,20 @@ class Post(object):
                 d[elem] = getattr(self, elem)
         return d
 
+    def to_db_dict(self):
+        d  = {}
+        for elem in self.__dict__:
+            if elem not in self.non_data and elem != "non_data":
+                if elem in self.has_encoder:
+                    d[elem] = getattr(object, name)
+                d[elem] = getattr(self, elem)
+        return d
+
     def to_JSON(self):
         return json.dumps(self.to_dict())
 
     def to_db(self):
-        d = self.to_dict()
+        d = self.to_db_dict()
         if self.exists_in_db():
             print("updating")
             self.table.update(d ,where("_id")== self._id)
@@ -80,14 +89,6 @@ class Post(object):
             print("inserting")
             self.table.insert(d)
         return
-
-    def set_password(self, raw_pwd):
-        self.hash = sha256_crypt.encrypt(raw_pwd)
-        #self.to_db()
-
-    def check_password(self, raw_pwd):
-        """ pwd check """
-        return sha256_crypt.verify(raw_pwd, self.hash)
 
     def __str__(self):
         return str(self.__dict__)

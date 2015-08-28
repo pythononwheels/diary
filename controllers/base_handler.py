@@ -75,7 +75,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
     def dispatch(self, path, method):
-        print("dispatch: http request method" + self.request.method.lower())
+        print("dispatch: http request method: " + self.request.method.lower())
         print("dispatch: uri: " +  self.uri)
         #print("dispatch: request dir: " +  str(dir(self.request)))
         print("dispatch: method: " +  self.method)

@@ -19,14 +19,12 @@ class DiaryHandler(BaseHandler):
 
     def cards_get(self):
         #self.print_debug_info()
-        posts = [
-            { "title" : "ein erster Titel", "text" : "hier kommt jetzt der Text"},
-            { "title" : "ein zweiter Titel", "text" : "hier kommt jetzt der Text"},
-            { "title" : "ein dritter Titel", "text" : "hier kommt jetzt der Text"}
-        ]
-        #self.render("diary_cards_2.tmpl", posts=posts)
-        #self.render("diary_bs4_cardstest_2.tmpl", posts=posts)
-        self.render("diary_bs4_cardstest.tmpl", posts=posts, login=self.get_secure_cookie("login"))
+        self.render("diary_cards.tmpl", login=self.get_secure_cookie("login"))
+
+
+    def new_get(self):
+        self.write("new_get")
+        self.flush()
 
     def on_finish(self):
         """

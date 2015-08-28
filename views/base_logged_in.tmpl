@@ -1,67 +1,117 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Diary</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-    <link href="{{ static_url("css/diary_logged_in.css") }}" rel="stylesheet">
-    <link href="{{ static_url("css/styles.css")}}" rel="stylesheet">
-    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>diary Album {{login}}</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{static_url("bootstrap/css/bootstrap.css")}}" rel="stylesheet">
+
+  <!-- Documentation extras -->
+  <link href="{{static_url("assets/docs.min.css")}}" rel="stylesheet">
+
+  <link href="{{ static_url("css/album.css") }}" rel="stylesheet">
+
+  <!-- Google Web fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,400italic,600' rel='stylesheet' type='text/css'>
+
+
+
+  {% block css %}
+
+  {% end %}
   </head>
+
   <body>
-<nav class="navbar navbar-fixed-top header">
-  <div class="col-md-12">
-        <div class="navbar-header">
-          
-          <a href="#" class="navbar-brand">Diary</a>
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
-          <i class="glyphicon glyphicon-search"></i>
-          </button>
-      
+
+    <div class="navbar-collapse collapse inverse" id="navbar-header">
+      <div class="container-fluid">
+        <div class="about">
+          <h4>Über</h4>
+          <p class="text-muted">diary ist dein persönliches und garntiert sicheres online Tagebuch. Du kannst einzelne Einträge für Freunde
+          freigeben oder auf Facebook oder Twitter teilen. Ansonsten sind alle Inhalte in deinem diary aber automatisch sicher und verschlüsselt und können nur von dir selbst abgerufen werden.</p>
         </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse1">
-          <ul class="nav navbar-nav navbar-right">
-             <li><a href="#" target="_ext">diray+</a></li>
-             <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#"><span class="badge pull-right">40</span>Link</a></li>
-                  <li><a href="#"><span class="badge pull-right">2</span>Link</a></li>
-                  <li><a href="#"><span class="badge pull-right">0</span>Link</a></li>
-                  <li><a href="#"><span class="label label-info pull-right">1</span>Link</a></li>
-                  <li><a href="#"><span class="badge pull-right">13</span>Link</a></li>
-                </ul>
-             </li>
-             <li><a href="#" id="btnToggle"><i class="glyphicon glyphicon-th-large"></i></a></li>
-             <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
-           </ul>
-        </div>  
-     </div> 
-</nav>
+        <div class="social">
+          <h4>Kontakt</h4>
+          <ul class="list-unstyled">
+            <li><a href="#">Follow @diary on Twitter</a></li>
+            <li><a href="#">Like @diary on Facebook</a></li>
+            <li><a href="#">Email @diary</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Logout</h4>
+          <p><a href="/logout">logout</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header">
+          &#9776;
+        </button>
+        <a href="#" class="navbar-brand">{{login}}'s diary</a>
+      </div>
+    </div>
 
-<!--main-->
-<div class="container" id="main">
+    {% block jumbotron %}
 
+    {% end %}
 
     {% block content %}
 
     {% end %}
 
-    </div> <!-- /container -->
+    <footer class="text-muted">
+      <div class="container">
+        <p class="pull-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>Neu bei diary? <a href="../../">Besuch die homepage</a> oder lies unseren <a href="../../getting-started/">getting started guide</a></p>
+      </div>
+    </footer>
 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.min.js"><\/script>')</script>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="{{ static_url("js/scripts.js") }}"></script>
+    <script src="{{ static_url("bootstrap/js/bootstrap.js")}}"></script>
+  
+    <script src="{{ static_url("assets/holder.min.js")}}"></script>
+  
+    <script src="{{ static_url("assets/anchor.js")}}"></script>
+  
+    <script src="{{ static_url("assets/tether.min.js")}}"></script>
+  
+    <script src="{{ static_url("assets/application.js") }}"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
+
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-     <script src="{{ static_url("js/ie10-viewport-bug-workaround.js") }}"></script>
+    <script src="{{ static_url("js/ie10-viewport-bug-workaround.js") }}"></script>
+    <script src="{{ static_url("js/ie-emulation-modes-warning.js") }}"></script>
+
+    <script>
+
+    Holder.addTheme('gray', {
+      background: '#777',
+      foreground: 'rgba(255,255,255,.75)',
+      font: 'Helvetica',
+      fontweight: 'normal'
+    })
+    </script>
+
+    {% block script %}
+
+    {% end %}
+
+   
   </body>
 </html>

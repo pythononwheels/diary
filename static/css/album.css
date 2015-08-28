@@ -25,12 +25,18 @@ body {
   margin-right: 3rem;
 }
 
+.logout {
+  max-width: 30rem;
+  margin-right: 3rem;
+}
+
 .social a {
   font-weight: 500;
-  color: #eceeef;
+  /*color: #eceeef;*/
 }
+
 .social a:hover {
-  color: #fff;
+  color: #000;
 }
 
 .jumbotron {

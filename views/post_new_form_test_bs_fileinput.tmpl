@@ -1,0 +1,40 @@
+{% extends "base_logged_in.tmpl" %}
+
+{% block css %}
+<link href="{{ static_url("bs_file_input/css/fileinput.min.css")}}" media="all" rel="stylesheet" type="text/css" />
+
+{% end %}
+
+{% block jumbotron %}
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h2 class="jumbotron-heading"> Erstelle einen neuen Eintrag</h1>
+        <p class="lead text-muted">und halte einfach fest was dich gerade bewegt hat.</p>
+      </div>
+    </section>
+{% end %}
+
+{% block content %}
+<div>
+  <label class="control-label">Select File</label>
+  <input id="input-1" type="file" class="file">
+</div>
+{% end %}    
+
+
+{% block script %}
+
+<script src="{{ static_url("bs_file_input/js/fileinput.min.js")}}"></script>
+
+<script>
+
+// A $( document ).ready() block.
+$( document ).ready(function() {
+    console.log( "ready!" );
+    // with plugin options
+    $("#input-1").fileinput({'showUpload':true, 'previewFileType':'any'});
+});
+
+
+</script>
+{% end %}
