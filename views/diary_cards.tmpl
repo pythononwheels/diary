@@ -1,4 +1,4 @@
-{% extends "base_logged_in.tmpl" %}
+{% extends "base_simple.tmpl" %}
 
 {% block jumbotron %}
     <section class="jumbotron text-center">
@@ -19,65 +19,74 @@
 {% end %}
 
 {% block content %}
-    <div class="album text-muted">
-      <div class="container">
-
-        <div class="row">
-          <div class="card-group">
-            
-
-            <div class="card">
-              <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-              </div>
-              <img data-src="holder.js/360x180/?text=Image" alt="Card image">
-              <div class="card-block">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-              </div>
-              <img src="{{ static_url("images/tile_thumbs/liesi_und_klaasi.jpg") }}" alt="Card image">
-              <div class="card-block">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-            
-            <div class="card card-inverse">
-              <img class="card-img" src="{{ static_url("images/tile_thumbs/nieki.jpg") }}" alt="Card image">
-              <div class="card-img-overlay">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="row">
-              <div class="card card-block">
-                <h3 class="card-title">Special title treatment</h3>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-            <div class="card card-block">
-                <h3 class="card-title">Special title treatment</h3>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
 
 
-      </div>
+<div class="card-columns">
+  <div class="card">
+    <img class="card-img-top" src="{{static_url("images/title_photos/1488c7963e53446fdcbdefe3436bb0f60193a.jpg")}}" alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">Card title that wraps to a new line</h4>
+      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
     </div>
+  </div>
+  <div class="card card-block">
+    <blockquote class="card-blockquote">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+      <footer>
+        <small class="text-muted">
+          Someone famous in <cite title="Source Title">Source Title</cite>
+        </small>
+      </footer>
+    </blockquote>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="{{ static_url("images/title_photos/11219605d4cf09b094eb0f44ec0ecb5e5c2a3.jpg")}}" alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card card-block card-inverse card-primary text-center">
+    <blockquote class="card-blockquote">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+      <footer>
+        <small>
+          Someone famous in <cite title="Source Title">Source Title</cite>
+        </small>
+      </footer>
+    </blockquote>
+  </div>
+
+  <div class="card">
+    <img class="card-img" src="{{static_url("images/title_photos/eecade66a002ccdbc6f16eddfa35473fb92b3.jpg")}}" alt="Card image">
+  </div>
+  <div class="card card-block text-right">
+    <blockquote class="card-blockquote">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+      <footer>
+        <small class="text-muted">
+          Someone famous in <cite title="Source Title">Source Title</cite>
+        </small>
+      </footer>
+    </blockquote>
+  </div>
+  <div class="card card-block">
+    <h4 class="card-title">Card title</h4>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="{{static_url("images/title_photos/1488c7963e53446fdcbdefe3436bb0f60193a.jpg")}}" alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">Card title that wraps to a new line</h4>
+      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+  </div>
+
+
+
+</div>
+
+      
 {% end %}    
