@@ -18,6 +18,10 @@ from views.modules import *
 from library.pow3_lib import APP_ID
 from library.render_partial import RenderPatialModule
 
+diary = {
+    "root" : os.path.abspath("./")
+}
+
 ui_modules = {
     'render_partial'     :   RenderPatialModule
 }

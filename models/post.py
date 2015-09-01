@@ -73,8 +73,9 @@ class Post(object):
         for elem in self.__dict__:
             if elem not in self.non_data and elem != "non_data":
                 if elem in self.has_encoder:
-                    d[elem] = getattr(object, name)
-                d[elem] = getattr(self, elem)
+                    d[elem] = getattr(object, str(elem)+"_encoder")
+                else:
+                    d[elem] = getattr(self, elem)
         return d
 
     def to_JSON(self):

@@ -66,24 +66,39 @@
 
     {% end %}
 
-    {% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1">
+          &nbsp;
+        </div>
+        <div class="col-sm-10">
+          {% block content %}
 
-    {% end %}
-
-    <footer class="text-muted">
-      <div class="container">
-        <p class="pull-right">
-          <a href="#">Back to top</a>
-        </p>
-        <p>Neu bei diary? <a href="../../">Besuch die homepage</a> oder lies unseren <a href="../../getting-started/">getting started guide</a></p>
+          {% end %}
+        </div>
+        <div class="col-sm-1">
+          &nbsp;
+        </div>
       </div>
-    </footer>
+      <div class="row">
+        <footer class="text-muted">
+          <div class="container">
+            <p class="pull-right">
+              <a href="#">Back to top</a>
+            </p>
+            <p>Neu bei diary? <a href="../../">Besuch die homepage</a> oder lies unseren <a href="../../getting-started/">getting started guide</a></p>
+          </div>
+        </footer>
+      </div>
+    </div>
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.min.js"><\/script>')</script>
+ <script>window.jQuery || document.write('<script src="{{static_url("assets/jquery.min.js")}}"><\/script>')</script>
 
     <script src="{{ static_url("bootstrap/js/bootstrap.js")}}"></script>
-  
+    
+    <script src="{{ static_url("js/diary.js") }}"></script>
+
     <script src="{{ static_url("assets/holder.min.js")}}"></script>
   
     <script src="{{ static_url("assets/anchor.js")}}"></script>

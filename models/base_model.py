@@ -20,7 +20,7 @@ class BaseModel(object):
 
     def get_time(self):
         return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(self.time))
-
+    
     def exists_in_db(self):
         """ check if user is in db """
         return self.table.contains(where("_id") == self._id)
@@ -36,6 +36,9 @@ class BaseModel(object):
             return self
         else:
             return None
+
+    def tags_encoder(self):
+        return(list(self.tags))
 
     @classmethod
     def find_by_id(self, id):
@@ -55,11 +58,21 @@ class BaseModel(object):
                 d[elem] = getattr(self, elem)
         return d
 
+    def to_db_dict(self):
+        d  = {}
+        for elem in self.__dict__:
+            if elem not in self.non_data and elem != "non_data":
+                if elem in self.has_encoder:
+                    d[elem] = getattr(object, str(elem)+"_encoder")
+                else:
+                    d[elem] = getattr(self, elem)
+        return d
+
     def to_JSON(self):
         return json.dumps(self.to_dict())
 
     def to_db(self):
-        d = self.to_dict()
+        d = self.to_db_dict()
         if self.exists_in_db():
             print("updating")
             self.table.update(d ,where("_id")== self._id)
