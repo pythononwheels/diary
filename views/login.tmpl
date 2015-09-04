@@ -1,23 +1,44 @@
 {% extends "base.tmpl" %}
 
+
+{% block css %}
+<style>
+
+  html {
+    background-image: url("{{static_url("images/The-Austerity-Diaries.jpg")}}");
+  }
+  body{
+    background-color: #8E24AA;
+  }
+
+</style>
+{% end %}
+
 {% block content %}
 
-  <div class="row">
+  <div class="row login-message-block">
     <div class="col-md-6">
-      <h2> Wilkommen bei diary</h2>
-      <h3>Erstelle ganz leicht dein ganz persönliches Tagebuch mit allen wichtigen
-      Texten, Fotos, Videos und Ereignissen. </h3>
+      <span class="text-jumbotron">
+        <h3> Willkommen bei diary</h3>
+        <h3>Erstelle ganz leicht dein ganz persönliches Tagebuch mit allen wichtigen
+        Texten, Fotos, Videos und Ereignissen. </h3>
+      </span>
+      <br>
+      <a class="btn btn-warning" href="/login/signin" role="button">Neu Anmelden</a>
     </div>
+
     <div class="col-md-6">
-      <form class="form-signin" action="login/" method="post">
-        <h3 class="form-signin-heading">Anmelden:</h3>
-        <label for="login" class="sr-only">username</label>
-        <input type="text" id="login" name="login" class="form-control" placeholder="email@adress.here" required autofocus>
-        <label for="passwort" class="sr-only">passwort</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="password" required>
-        <hr>
-        <button class="btn  btn-success btn-block" type="submit">Anmelden</button>
-      </form>
+      <div class="row">
+        <form class="form-signin" action="/login" method="post">
+          <h3 class="form-signin-heading text-jumbotron">Einloggen:</h3>
+          <label for="login" class="sr-only">username</label>
+          <input type="email" id="login" name="login" class="form-control focusedInput" placeholder="email@adress.here" autofocus required>
+          <label for="passwort" class="sr-only">passwort</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="password" required>
+          <button class="btn  btn-success btn-block" type="submit">Einloggen</button>
+        </form>
+      </div>
+      
     </div>
   </div>
 

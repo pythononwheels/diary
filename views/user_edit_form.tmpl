@@ -1,0 +1,93 @@
+{% extends "base_logged_in.tmpl" %}
+
+
+{% block content %}
+     <div class="container">
+        <h2>User ändern</h2>
+
+      </div>
+      <hr>
+    <div class="col-sm-2">
+      &nbsp;
+    </div>
+    <div class="col-sm-8">
+      <form action="/user/edit" method="post">
+       
+          <div class="form-group row">
+            <label for="swbkuerzel" class="col-sm-2 form-control-label">swbkürzel</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="swbkuerzel" name="swbkuerzel" value="{{user.swbkuerzel}}" required autofocus>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="role" class="col-sm-2 form-control-label">Rolle</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="role" name="role" required>
+                {% if user.role == "admin" %}
+                  <option>user</option>
+                  <option selected="selected">admin</option>
+                {% else %}
+                  <option selected="selected">user</option>
+                  <option>admin</option>
+                {% end %}
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="password" class="col-sm-2 form-control-label">Passwort</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="password" name="password" value="{{user.get_password()}}"required>
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <label for="plots" class="col-sm-2 form-control-label">plots</label>
+            <div class="col-sm-10">
+              {% for plot in plots %}
+                <div class="checkbox">
+                  <label>
+                  {% if plot["plot_name"] in user.plots %}
+                    <input type="checkbox" name="plots" id="plots" value="{{plot["plot_name"]}}" checked>
+                  {% else %}
+                    <input type="checkbox" name="plots" id="plots" value="{{plot["plot_name"]}}">
+                  {% end %}
+                  {{plot["plot_name"]}}
+                  </label>
+                </div>
+              {% end %}
+            </div>
+          </div>
+
+          <input type="hidden"  id="id" name="id" value="{{user._id}}">
+          <hr>
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <a href="/user/delete?id={{user._id}}" type="button" class="btn btn-danger btn-block">User löschen</a>
+            </div>
+
+            <div class="col-sm-3">
+              &nbsp;
+            </div>
+            <div class="col-sm-3">
+              <a href="/mavs/index" type="button" class="btn btn-primary btn-block">Zurück</a>
+            </div>
+            
+            <div class="col-sm-3">
+              <button class="btn btn-success btn-block" type="submit">Ändern</button>
+            </div>
+          </div>
+        </form>
+    </div>
+    <div class="col-sm-2">
+      &nbsp;
+    </div>
+
+{% end %}
+    
+
+
+
+
+

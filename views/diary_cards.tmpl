@@ -1,14 +1,23 @@
 {% extends "base_logged_in.tmpl" %}
 
+{% block css%}
+ 
+  <link href="{{ static_url("css/diary.css") }}" rel="stylesheet">
+{% end %}
+
+
 {% block jumbotron %}
     <section class="jumbotron text-center">
       <div class="container">
         <!--h1 class="jumbotron-heading"> {{login}}'s diary</h1-->
-        <p class="lead text-muted">Deine Erlebnisse, Eindrücke, Momente in Worten und Bildern. Einfach zu erstellen und nur für dich!<br>
-         Sogar wir können nicht darauf zugreifen. Wenn du willst kannst du sie aber ganz einfach teilen.
+        <p class="lead text-jumbotron">Deine Erlebnisse, Eindrücke, Momente in Worten und Bildern. Einfach zu erstellen und nur für dich!<br>
+         Auch wir können nicht darauf zugreifen. Wenn du willst kannst du sie aber ganz einfach teilen.
          </p>
          <p>
          <a href="/posts/new" class="btn btn-primary">Neuer Eintrag</a>
+         <a href="/photos/new" class="btn btn-secondary">Neues Foto</a>
+         <a href="/quotes/new" class="btn btn-secondary">Neuer Text</a>
+         <a href="/quotes/new_summary" class="btn btn-secondary">Fazit des Tages</a>
          </p>
         <!--p>
           <a href="#" class="btn btn-primary">Main call to action</a>

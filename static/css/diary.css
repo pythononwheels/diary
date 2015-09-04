@@ -9,15 +9,33 @@ html{
 	background-size:cover;
 }
 
-body {
-	/* This image will be displayed fullscreen */
-	background:url('../images/The-Austerity-Diaries.jpg') no-repeat center center;
-
-}
 .jumbotron {
   padding: 30px 15px;
   margin-bottom: 30px;
-  color: inherit;
+  color: #F8BBD0;
   border: 1px;
-  background-color: #fff;
+  background-color: #8E24AA;
+  /*background-image: url("{{static_url("images/The-Austerity-Diaries.jpg")}}");*/
+  background-size: cover;
+}
+
+.login-message-block {
+	background-color: #8E24AA;
+}
+
+.text-jumbotron {
+  /* palette: https://www.google.com/design/spec/style/color.html#color-color-palette */
+  color: #F8BBD0;
+  font-family: 'Josefin Slab', serif; 
+  font-weight: 400;
+  
+}
+
+
+.text-diary {
+	color: #F8BBD0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 180%;
+
 }

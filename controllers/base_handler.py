@@ -18,7 +18,7 @@ class BaseHandler(tornado.web.RequestHandler):
     # Base Handler for the Controllers 
     #
     def get_current_user(self):
-        return self.get_secure_cookie("login")
+        return self.get_secure_cookie("swbkuerzel")
 
     def write_debug_info(self):
         """
@@ -103,7 +103,11 @@ class BaseHandler(tornado.web.RequestHandler):
         #print("dispatch: request dir: " +  str(dir(self.request)))
         print("dispatch: method: " +  self.method)
         print("dispatch: looking for action: " +  method + "_" + self.request.method.lower())
-        is_mobile_request = self.is_mobile_request(self.request.headers["User-Agent"])
+        if "User-Agent" in self.request.headers:
+            is_mobile_request = self.is_mobile_request(self.request.headers["User-Agent"])
+        else:
+            is_mobile_request = False
+            print("No User-Agent header given")
         print("dispath is mobile access: " + str(is_mobile_request))
         
         # action name is method + HTTP request method

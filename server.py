@@ -51,6 +51,7 @@ routes = [
         (r'/goodbye',                          GoodByeHandler),
         (r'/diary/[^/]+',                      DiaryHandler),
         (r'/posts/[^/]+',                      PostHandler),
+        (r'/photos/[^/]+',                     PhotoHandler),
         (r'/user/([^/]+)',                     UserHandler),
         (r'.*',                                LoginHandler)
         ]

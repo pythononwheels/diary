@@ -25,11 +25,6 @@ class DiaryHandler(BaseHandler):
         #self.print_debug_info()
         self.render("diary_cards_mobile.tmpl", login=self.get_secure_cookie("login"))
 
-
-    def new_get(self):
-        self.write("new_get")
-        self.flush()
-
     def on_finish(self):
         """
             Called after the end of a request.

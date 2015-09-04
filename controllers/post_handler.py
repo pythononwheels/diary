@@ -4,8 +4,6 @@ import os
 import tornado.web
 
 
-IMAGE_UPLOAD_DIR = "../static/images"
-
 class PostHandler(BaseHandler):
     """
         general RequestHandler docu see : http://tornado.readthedocs.org/en/latest/web.html
@@ -28,35 +26,6 @@ class PostHandler(BaseHandler):
         #self.print_debug_info()
         #self.render("post_new_form_test_bs_fileinput.tmpl", login=self.get_secure_cookie("login"))
         self.render("post_new_form_upload.tmpl", login=self.get_secure_cookie("login"))
-
-    def print_file_info(self):
-        #
-        # print some info about the image uploads
-        #
-        print("files keys: " + str(self.request.files.keys())) 
-        for file_list in self.request.files:
-            print("len : " + str(file_list) + " : " + str(len(self.request.files[file_list])))
-            for file_dict in self.request.files[file_list]:                
-                print("file_dict keys: " + str(file_dict.keys()))
-                for key in file_dict.keys():
-                    if key not in ["body"]:
-                        print(str(key) + " : " + str(file_dict[key]))
-
-    def get_photos(self):
-        for file_list in self.request.files:
-            # there is one list for each input file field. 
-            # normally there should be only one. 
-            for photo in self.request.files[file_list]:                
-                # every phot represents a file_dict { "filename", "body", "content_type" }
-                original_fname = photo['filename']
-                extension = os.path.splitext(original_fname)[1]
-                final_filename= os.path.join(IMAGE_UPLOAD_DIR,  original_fname+extension)
-                output_file = open(final_filename, 'wb')
-                output_file.write(photos['body'])
-
-                
-                    
-
 
     def new_post(self):
         """ create the new post in table """

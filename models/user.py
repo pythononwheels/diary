@@ -3,17 +3,16 @@ from passlib.hash import sha256_crypt
 import uuid
 from tinydb import TinyDB, where
 import json
+from models.base_model import BaseModel
 
-class User(object):
-    """ Repräsentiert einen MAVS User
-        attribute: 
-                swbkuerzel
-                role (user | admin)
-
+class User(BaseModel):
+    """
+       a diary user
     """
     
     table = users_table
     def __init__(self, login):
+        super().__init__()
         self.table = users_table
         self.login = login
         self.email = None
@@ -23,12 +22,8 @@ class User(object):
         self.profile_photo = None
         self.motto = None
         self.hash = None
-        self._id = str(uuid.uuid4())
-        self.non_data = ["table"]
-        # try to find the user 
-        if self.exists_in_db():            
-            # user exists in db so, take the attributes from db
-            self.create_from_db()
+        #self.non_db.append("attrX")
+        #self.has_encoder.append("tags")
 
     def create_from_db(self):
         if self.exists_in_db():
@@ -46,34 +41,6 @@ class User(object):
         """ check if user is in db """
         return self.table.contains(where("login") == self.login)
 
-    @classmethod
-    def find(self, login):
-        u = User(login)
-        return u
-        
-    def find_all(self):
-        return self.table.all()
-    
-    def to_dict(self):
-        d  = {}
-        for elem in self.__dict__:
-            if elem not in self.non_data and elem != "non_data":
-                d[elem] = getattr(self, elem)
-        return d
-
-    def to_JSON(self):
-        return json.dumps(self.to_dict())
-
-    def to_db(self):
-        d = self.to_dict()
-        if self.exists_in_db():
-            print("updating")
-            self.table.update(d ,where("_id")== self._id)
-        else:
-            print("inserting")
-            self.table.insert(d)
-        return
-
     def set_password(self, raw_pwd):
         self.hash = sha256_crypt.encrypt(raw_pwd)
         #self.to_db()
@@ -82,5 +49,3 @@ class User(object):
         """ pwd check """
         return sha256_crypt.verify(raw_pwd, self.hash)
 
-    def __str__(self):
-        return str(self.__dict__)

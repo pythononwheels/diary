@@ -1,75 +1,52 @@
 {% extends "base_logged_in.tmpl" %}
 
 {% block css %}
-<link href="{{ static_url("css/dropzone.css")}}" media="all" rel="stylesheet" type="text/css" />
 
 {% end %}
 
 {% block jumbotron %}
     <section class="jumbotron text-center">
       <div class="container">
-        <h2 class="jumbotron-heading"> Erstelle einen neuen Eintrag</h1>
-        <p class="lead text-muted">und halte einfach fest was dich gerade bewegt hat.</p>
+        <h2 class="jumbotron-heading">Füge ein neues Foto hinzu</h1>
+        <p class="lead text-jumbotron">und halte einfach fest was dich gerade bewegt hat.</p>
       </div>
     </section>
 {% end %}
 
 {% block content %}
-   <div class="container">
-    <div class="row">
-      <div class="col-sm-2">
-        &nbsp;
-      </div>
       
-      <div class="col-sm-8">
         <form action="new" method="POST" enctype="multipart/form-data">
-        <div class="form-group row">
-          <label for="post_title" class="col-sm-2 form-control-label">Titel</label>
+         <div class="form-group row">
+          <h4>Foto:</h4>
+          <label for="post_photos" class="col-sm-2 form-control-label">&nbsp;</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="post_title" name="post_title" placeholder="Titel">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="post_text" class="col-sm-2 form-control-label">Text</label>
-          <div class="col-sm-10">
-            <textarea class="form-control" id="post_text" name="post_text" rows="5"></textarea>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="post_tags" class="col-sm-2 form-control-label">Tags</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="post_tags" name="post_tags" placeholder="Tag1, Tag2, Tag3">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="post_photos" class="col-sm-2 form-control-label">Foto</label>
-          <div class="col-sm-10">
-            <input id="post_photos" type="file" name="post_photos" name="post_photos" multiple="multiple" accept="image/*" />
+            <small id="image_list" class="text-muted">Hier kannst du Fotos hinzufügen.</small>
+            <input id="post_photos" type="file" name="post_photos" name="post_photos" multiple="multiple" accept="image/*" required/>
             <hr />
               <b>Live Preview</b>
               <br />
               <br />
               <div id="dvPreview">
               </div>
-            <small id="image_list" class="text-muted">Hier kannst du Fotos zu deinem Eintrag hinzufügen.</small>
+            
           </div>
         </div>
+        <hr>
+        <h4>Optional:</h4>
         <div class="form-group row">
-          <label class="col-sm-2">Ereignis</label>
+          <label for="post_title" class="col-sm-2 form-control-label">Titel</label>
           <div class="col-sm-10">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" id="post_is_event" name="post_is_event"> Ja, dies ist ein besonderes Ereignis.
-              </label>
-            </div>
+            <input type="text" class="form-control" id="post_title" name="post_title" placeholder="Titel">
           </div>
         </div>
+
         <div class="form-group row">
-          <label for="post_event" class="col-sm-2 form-control-label">Ereignis</label>
+          <label for="post_tags" class="col-sm-2 form-control-label">Tags</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="post_event" name="post_event" placeholder="Titel">
+            <input type="text" class="form-control" id="post_tags" name="post_tags" placeholder="Tag1, Tag2, Tag3">
           </div>
         </div>
+       
         <div class="form-group row">
           <label class="col-sm-2">love it</label>
           <div class="col-sm-10">
@@ -82,19 +59,12 @@
         </div>
         <div class="form-group row">
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary">erstellen</button>
+            <button type="submit" class="btn btn-primary">hochladen</button>
           </div>
         </div>
       </form>
 
-    </div>
-    
-    <div class="col-sm-2">
-      &nbsp;
-    </div>
-  
-  </div>
-</div>
+
 {% end %}    
 
 
