@@ -19,7 +19,7 @@ class DiaryHandler(BaseHandler):
 
     def cards_get(self):
         #self.print_debug_info()
-        self.render("diary_cards.tmpl", login=self.get_secure_cookie("login"))
+        self.render("diary_cards.tmpl", login=self.get_secure_cookie("login"), msg =" Eine Message")
 
     def cards_get_mobile(self):
         #self.print_debug_info()

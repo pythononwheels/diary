@@ -22,6 +22,7 @@ class User(BaseModel):
         self.profile_photo = None
         self.motto = None
         self.hash = None
+        self.create_from_db()
         #self.non_db.append("attrX")
         #self.has_encoder.append("tags")
 

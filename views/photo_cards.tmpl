@@ -3,6 +3,8 @@
 {% block css%}
  
   <link href="{{ static_url("css/diary.css") }}" rel="stylesheet">
+  <script src="{{static_url("js/masonry.pkgd.min.js")}}"></script>
+  
 {% end %}
 
 
@@ -16,6 +18,7 @@
          <p>
          <a href="/posts/new" class="btn btn-primary">Neuer Eintrag</a>
          <a href="/photos/new" class="btn btn-secondary">Neues Foto</a>
+         <a href="/quotes/new" class="btn btn-secondary">Neuer Text</a>
          <a href="/quotes/new_summary" class="btn btn-secondary">Fazit des Tages</a>
          <a href="/photos/cards" class="btn btn-secondary">Foto Cards</a>
          </p>

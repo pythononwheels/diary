@@ -17,11 +17,13 @@ class Photo(BaseModel):
         self.file_extension = None
         self.type = None
         self.abspath = None
-        self.name = None
+        self.title = None
         self.tags = set()
         self.votings = [] #list of tuples [(vote, date), ...] anonymous on purpose
         self.shared = [] # list of tuples if shared [("destination", date), ..]
         self.love_it = False 
+        self.user_id = None
+        self.thumbs = {} # {"WIDTH_IN_PX" : filename, ...}
         # all non_ddb attributes of the class wont be stored in the DB.
         #self.non_ddb.append("attrX")
         self.has_encoder.append("tags")
