@@ -31,7 +31,11 @@
 {% end %}
 
 {% block content %}
- 
-test
+    {% for photo in photos %}
+        <img src="{{static_url("images/card_thumbs/")}}{{photo.thumbs["card_thumb"]}}" class="img-rounded">
+        <img src="{{static_url("images/card_thumbs/")}}{{photo.thumbs["card_thumb"]}}" class="img-circle">
+        <img src="{{static_url("images/card_thumbs/")}}{{photo.thumbs["card_thumb"]}}" class="img-thumbnail">
+
+    {% end %}
 
 {% end %}    
