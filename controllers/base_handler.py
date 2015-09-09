@@ -18,7 +18,8 @@ class BaseHandler(tornado.web.RequestHandler):
     # Base Handler for the Controllers 
     #
     def get_current_user(self):
-        return self.get_secure_cookie("login")
+        login = self.get_secure_cookie("login")
+        return str(login.decode("utf-8"))
 
     def write_debug_info(self):
         """

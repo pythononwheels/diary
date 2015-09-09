@@ -18,19 +18,10 @@ from views.modules import *
 from library.pow3_lib import APP_ID
 from library.render_partial import RenderPatialModule
 
-diary = {
-    "root" : os.path.abspath("./")
-}
-
-ui_modules = {
-    'render_partial'     :   RenderPatialModule
-}
-
 app_settings = {
     "port"              :   443,
     "debug"             :   True,
     "template_path"     :   "./views",
-    "ui_modules"        :   ui_modules,
     "static_path"       :   "./static",
     "static_url_prefix" :   "/static/",
     "cookie_secret"     :   APP_ID,

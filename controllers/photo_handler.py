@@ -61,8 +61,11 @@ class PhotoHandler(BaseHandler):
                 p.file_extension = extension
                 p.abspath = final_filename
                 u=User(self.get_current_user())
+                print("User: " + str(u.login) + " @id: " + str(u._id))
+                print("User in db?: " + str(u.exists_in_db()))
                 if not u.exists_in_db():
-                    self.render("error.tmpl", msg="Der Benutzer " + str(self.get_current_user()) + "exisitert nicht.")
+                    print(" ERROR : User not in DB")
+                    self.redirect("/diary/error", msg="Der Benutzer " + str(self.get_current_user()) + "exisitert nicht.")
                 output_file = open(final_filename, "wb")
                 output_file.write(photo["body"])
                 output_file.close()
@@ -102,6 +105,9 @@ class PhotoHandler(BaseHandler):
         self.default_methods["get"] = "new"
         self.default_methods["post"] = "new"
 
+    def show_get(self):
+        self.render("photo_show.tmpl", login=self.get_current_user())
+    
     def new_get(self):
         self.render("photo_new_form.tmpl", login=self.get_current_user())
 
@@ -109,9 +115,9 @@ class PhotoHandler(BaseHandler):
         #self.print_file_info()
         photos = self.save_photos()
         print([str(photo.filename) for photo in photos])
-        self.render("photo_cards.tmpl", login=self.get_current_user())
+        self.render("photo_show.tmpl", login=self.get_current_user())
 
     def cards_get(self):
         self.render("photo_cards.tmpl", photos=Photo.find_all(), login=self.get_current_user())
 
-        
+            
