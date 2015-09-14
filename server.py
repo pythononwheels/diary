@@ -37,14 +37,15 @@ server_settings =dict(
     )
 
 routes = [
-        (r'/login',                            LoginHandler),
-        (r'/logout',                           LogoutHandler),
-        (r'/goodbye',                          GoodByeHandler),
-        (r'/diary/[^/]+',                      DiaryHandler),
-        (r'/posts/[^/]+',                      PostHandler),
-        (r'/photos/[^/]+',                     PhotoHandler),
-        (r'/user/([^/]+)',                     UserHandler),
-        (r'.*',                                LoginHandler)
+        (r'/login',                                     LoginHandler),
+        (r'/logout',                                    LogoutHandler),
+        (r'/goodbye',                                   GoodByeHandler),
+        (r'/diary/[^/]+',                               DiaryHandler),
+        (r'/posts/[^/]+',                               PostHandler),
+        (r'/photos/[^/]+',                              PhotoHandler),
+        (r'/user/([^/]+)',                              UserHandler),
+        (r'/test(?:/.*)?',                              TestHandler),
+        (r'.*',                                         LoginHandler)
         ]
 
 if __name__ == "__main__":

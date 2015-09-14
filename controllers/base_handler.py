@@ -17,6 +17,11 @@ class BaseHandler(tornado.web.RequestHandler):
     #
     # Base Handler for the Controllers 
     #
+
+    def initialize(self):
+        self.default_methods = {}
+        self.default_methods = {}
+
     def get_current_user(self):
         login = self.get_secure_cookie("login")
         return str(login.decode("utf-8"))
@@ -57,13 +62,58 @@ class BaseHandler(tornado.web.RequestHandler):
         else:
             return False
 
+    def prepare_routes_classic(self):
+        #
+        # get controller, method and parameter 
+        # for now : /controller/method/parameter1/parm2.../paramN
+        #  calls (controller.method(parameters=[param1, param2, ..., paramN])
+        #
+        print("reverse_url= " + str(self.application.reverse_url))
+        self.uri = self.request.uri
+        self.path = self.request.uri.split('?')[0]
+
+        if self.path.count("/") > 2:
+            self.controller = self.path.split("/")[-3]
+            self.method = self.path.split('/')[-2]        
+            self.parameter = self.path.split("/")[-1]
+        else:
+            self.controller = self.path.split("/")[-2]
+            self.method = self.path.split('/')[-1]        
+       
+        return
+
+    def prepare_routes_resty(self):
+        self.uri = self.request.uri
+        self.path = self.request.uri.split('?')[0]
+
+        paramlist =[]
+        controller = ""
+        method = ""
+        url = self.path
+        print(url)
+        controller = url.split("/")[1]
+        if url.count("/") > 1:
+            method = url.split("/")[2]
+        if url.count("/") > 2:
+            for elem in range(3, url.count("/")+1):
+                paramlist.append(url.split("/")[elem])
+
+
+        print("controller: " + controller)
+        print("method: " + method)
+        print("params: " + str(paramlist))
+        print()
+        self.controller = controller
+        self.method = method
+        self.param_list = paramlist
+        return
+
     def prepare(self):
         """
             Called at the beginning of a request before get/post/etc.
         """
-        self.uri = self.request.uri
-        self.path = self.request.uri.split('?')[0]
-        self.method = self.path.split('/')[-1]
+        #self.prepare_routes_classic()
+        self.prepare_routes_resty()
         self.default_methods = {}
         #
         # You can use the before_handler in a local controller to
@@ -76,29 +126,28 @@ class BaseHandler(tornado.web.RequestHandler):
         if callable(before_handler):
             before_handler()
         
-
-    def post(self):
-        return self.dispatch(self.path, self.method)
+    def post(self, *args, **kwargs):
+        return self.dispatch(self.path, self.method, *args, **kwargs)
     
-    def get(self):
-        return self.dispatch(self.path, self.method)
+    def get(self, *args, **kwargs):
+        return self.dispatch(self.path, self.method, *args, **kwargs)
 
-    def delete(self):
-        return self.dispatch(self.path, self.method)
+    def delete(self, *args, **kwargs):
+        return self.dispatch(self.path, self.method, *args, **kwargs)
 
-    def put(self):
-        return self.dispatch(self.path, self.method)
+    def put(self, *args, **kwargs):
+        return self.dispatch(self.path, self.method, *args, **kwargs)
 
     def exec_action(self, action, *args, **kwargs):
         if callable(action):
+            print("exec_action: *args: " + str(*args))
+            print("exec_action: *kwargs: " + str(*kwargs))
             return action(*args, **kwargs)
         else:
             raise tornado.web.HTTPError(404)
     
 
-
-
-    def dispatch(self, path, method):
+    def dispatch(self, path, method, *args, **kwargs):
         print("request: " + str(self.request))
         print("dispatch: http request method: " + self.request.method.lower())
         print("dispatch: uri: " +  self.uri)
@@ -122,7 +171,7 @@ class BaseHandler(tornado.web.RequestHandler):
                 # go for the mobile method
                 action = getattr(self, action_name + "_mobile", None)
                 print("dispatch: action is: " + str(action_name + "_mobile"))
-                return self.exec_action(action)
+                return self.exec_action(action)(*args, **kwargs)
         
         if hasattr(self, action_name ):
             # go for the standard method
